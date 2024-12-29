@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "7": {
+      "item": "m7ga:ichor_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    " 7 ",
+    " 7 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "m7ga:ichor_rod"
+  }
+}

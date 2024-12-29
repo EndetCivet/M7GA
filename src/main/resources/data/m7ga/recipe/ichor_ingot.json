@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "m7ga:ichor_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "m7ga:ichor_ingot"
+  }
+}

@@ -21,8 +21,8 @@ public class ModItems {
     //等级标签
     public static final Tier CUSTOM_TIER = new SimpleTier(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-            7777,
-            7f,
+            77777,
+            17f,
             7f,
             27,
             //
@@ -40,6 +40,7 @@ public class ModItems {
                             )
             )
     ));
+
     //彩虹镐
     public static final String RAINBOW_PICKAXE_ID = "rainbow_pickaxe";
     public static final Supplier<PickaxeItem> RAINBOW_PICKAXE = ITEMS.register(RAINBOW_PICKAXE_ID,()-> new PickaxeItem(
@@ -61,6 +62,7 @@ public class ModItems {
     //彩虹锭
     public static final String RAINBOW_INGOT_ID = "rainbow_ingot";
     public static final Supplier<Item> RAINBOW_INGOT = ITEMS.register(RAINBOW_INGOT_ID,()-> new Item(new Item.Properties().fireResistant()));
+
     //注册
     public static void register(IEventBus modEventBus) {
         ITEMS.register(modEventBus);

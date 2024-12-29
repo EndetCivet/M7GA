@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "7": {
+      "item": "m7ga:ichor_ingot"
+    },
+    "8": {
+      "item": "m7ga:ichor_rod"
+    }
+  },
+  "pattern": [
+    "77 ",
+    "78 ",
+    " 8 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "m7ga:ichor_axe"
+  }
+}
