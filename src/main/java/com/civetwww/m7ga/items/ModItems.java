@@ -22,7 +22,7 @@ public class ModItems {
     public static final Tier CUSTOM_TIER = new SimpleTier(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
             77777,
-            17f,
+            27f,
             7f,
             27,
             //
@@ -35,7 +35,7 @@ public class ModItems {
             new Item.Properties().attributes(
                     AxeItem.createAttributes(
                             CUSTOM_TIER,
-                            17,
+                            27,
                             0f
                             )
             )

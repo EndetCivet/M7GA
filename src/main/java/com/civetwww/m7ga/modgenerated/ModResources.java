@@ -9,7 +9,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-public class resource {
+public class ModResources {
     public static class ModelProvider extends ItemModelProvider {
         public ModelProvider(PackOutput gen, ExistingFileHelper helper) {
             super(gen, M7GA.MODID, helper);

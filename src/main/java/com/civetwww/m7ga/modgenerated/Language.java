@@ -6,7 +6,7 @@ import com.civetwww.m7ga.items.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class language {
+public class Language {
     public static class EnglishLanguageProvider extends LanguageProvider {
         public EnglishLanguageProvider(PackOutput gen) {
             super(gen, M7GA.MODID, "en_us");

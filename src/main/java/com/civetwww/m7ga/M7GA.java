@@ -1,9 +1,10 @@
 package com.civetwww.m7ga;
 
-import com.civetwww.m7ga.UI.tabs;
+import com.civetwww.m7ga.Event.ModEvents;
+import com.civetwww.m7ga.UI.ModTabs;
 import com.civetwww.m7ga.blocks.ModBlocks;
 import com.civetwww.m7ga.items.ModItems;
-import com.civetwww.m7ga.modgenerated.modgenerated;
+import com.civetwww.m7ga.modgenerated.ModGenerated;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
@@ -38,13 +39,12 @@ public class M7GA {
 
 
 
-
     public M7GA(IEventBus modEventBus, ModContainer modContainer) {
         ModItems.register(modEventBus);
-        tabs.TABS.register(modEventBus);
-        modEventBus.addListener(tabs::buildCreativeTabContent);
+        ModTabs.TABS.register(modEventBus);
+        modEventBus.addListener(ModTabs::buildCreativeTabContent);
         ModBlocks.register(modEventBus);
-        modEventBus.addListener(modgenerated::gatherData);
+        modEventBus.addListener(ModGenerated::gatherData);
     }
 
 }
