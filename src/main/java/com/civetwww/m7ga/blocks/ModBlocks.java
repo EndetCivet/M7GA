@@ -2,11 +2,15 @@ package com.civetwww.m7ga.blocks;
 
 import com.civetwww.m7ga.M7GA;
 import com.civetwww.m7ga.items.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -50,7 +54,14 @@ public class ModBlocks {
                     .ignitedByLava()
                     .pushReaction(PushReaction.DESTROY)
                     .lightLevel(state -> 7)
-            ));
+            ) {
+                @Override
+                public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+                    // 检查下方是否是草方块
+                    BlockState belowBlock = world.getBlockState(pos.below());
+                    return belowBlock.is(Blocks.GRASS_BLOCK);
+                }
+            });
 
 
 
