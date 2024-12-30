@@ -1,6 +1,5 @@
 package com.civetwww.m7ga;
 
-import com.civetwww.m7ga.Event.ModEvents;
 import com.civetwww.m7ga.UI.ModTabs;
 import com.civetwww.m7ga.blocks.ModBlocks;
 import com.civetwww.m7ga.items.ModItems;
