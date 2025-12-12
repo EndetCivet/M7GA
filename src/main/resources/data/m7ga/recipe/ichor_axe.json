@@ -1,21 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "7": {
-      "item": "m7ga:ichor_ingot"
+    "type": "minecraft:smithing_transform",
+    "base": {
+        "item": "minecraft:netherite_axe"
     },
-    "8": {
-      "item": "m7ga:ichor_rod"
+    "template": {
+        "item": "m7ga:mega_template"
+    },
+    "addition": {
+        "item": "m7ga:ichor_core"
+    },
+    "result": {
+        "count": 1,
+        "id": "m7ga:ichor_axe"
     }
-  },
-  "pattern": [
-    "77 ",
-    "78 ",
-    " 8 "
-  ],
-  "result": {
-    "count": 1,
-    "id": "m7ga:ichor_axe"
-  }
 }

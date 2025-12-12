@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+    "I": {
+    "item": "m7ga:ichor_ingot"
+    },
+    "O": {
+    "item": "minecraft:string"
+    }
+    },
+    "pattern": [
+    "OOO",
+    "OIO",
+    "OOO"
+    ],
+    "result": {
+    "count": 1,
+    "id": "m7ga:ichor_cloth"
+    }
+}

@@ -1,7 +1,7 @@
 {
     "type": "minecraft:smithing_transform",
     "base": {
-        "item": "minecraft:netherite_pickaxe"
+        "item": "minecraft:netherite_chestplate"
     },
     "template": {
         "item": "m7ga:mega_template"
@@ -11,6 +11,6 @@
     },
     "result": {
         "count": 1,
-        "id": "m7ga:rainbow_pickaxe"
+        "id": "m7ga:ichor_chestplate"
     }
 }

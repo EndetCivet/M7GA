@@ -1,16 +1,16 @@
 {
     "type": "minecraft:smithing_transform",
     "base": {
-        "item": "minecraft:netherite_pickaxe"
+        "item": "minecraft:netherite_helmet"
     },
     "template": {
         "item": "m7ga:mega_template"
     },
     "addition": {
-        "item": "m7ga:rainbow_core"
+        "item": "m7ga:ichor_core"
     },
     "result": {
         "count": 1,
-        "id": "m7ga:rainbow_pickaxe"
+        "id": "m7ga:ichor_helmet"
     }
 }

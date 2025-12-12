@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "m7ga:rainbow_ingot"
+    },
+    "C": {
+      "item": "m7ga:rainbow_core"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "RCR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "m7ga:rainbow_helmet"
+  }
+}

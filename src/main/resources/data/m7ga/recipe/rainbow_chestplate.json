@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "m7ga:rainbow_ingot"
+    },
+    "C": {
+      "item": "m7ga:rainbow_core"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "RRR",
+    "RRR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "m7ga:rainbow_chestplate"
+  }
+}

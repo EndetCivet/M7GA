@@ -1,6 +1,19 @@
-// 1.21.1	2024-12-29T14:36:21.5749273	Item Models: m7ga
+// 1.21.1	2025-12-12T23:30:32.3964592	Item Models: m7ga
 e1048f63f15b24cc27e4c42a13904606734a4eba assets/m7ga/models/item/ichor_axe.json
+9445b020b17afd6732cb49da2afcabf9fee87ed3 assets/m7ga/models/item/ichor_boots.json
+a6e7f7a0c54256c224306c42c027a6940269d312 assets/m7ga/models/item/ichor_chestplate.json
+cbe8729d4bc33fe3a4966000d1600a18b95597e7 assets/m7ga/models/item/ichor_cloth.json
+9f0d28fd752e6decb73a41e884a5b4fe6c70af57 assets/m7ga/models/item/ichor_core.json
+2c39328c5a10271ea1e24ae6f70f7c3b4bf0898b assets/m7ga/models/item/ichor_helmet.json
 7f1582a87e970edbb899c0e161f509802f649ffa assets/m7ga/models/item/ichor_ingot.json
+87d722b0d8e44d2031217a5781c7cb0f47555420 assets/m7ga/models/item/ichor_leggings.json
 43e319f4fd5901ecc0d2967b91172f8f6db5ec11 assets/m7ga/models/item/ichor_rod.json
+78973aea7295f3234393b5ea74138dcb43643d43 assets/m7ga/models/item/mega_template.json
+8ec7b4937698ec59947f9e25c2a8617810407d3c assets/m7ga/models/item/rainbow_boots.json
+fbe9f19cbd1891abf3b556c0d26fb68b53df25c8 assets/m7ga/models/item/rainbow_chestplate.json
+ece05825a9020282d15610c9b154045ac49608a2 assets/m7ga/models/item/rainbow_cloth.json
+e0cec6868672020478612fd60c55064d1d35fcaf assets/m7ga/models/item/rainbow_core.json
+91b072f56f5689246eb74389ae7444800521a6e6 assets/m7ga/models/item/rainbow_helmet.json
 b85b87b5d5234b2ee00a0c18eb74d2f708ef86e1 assets/m7ga/models/item/rainbow_ingot.json
+9118e148e1a279b2e18bcf4be7784b990ca0f114 assets/m7ga/models/item/rainbow_leggings.json
 e861cd9541da43156d49819d36ca38133f74ef72 assets/m7ga/models/item/rainbow_pickaxe.json
