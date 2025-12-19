@@ -35,35 +35,10 @@ public class MaidArmorItem extends ArmorItem {
 
     @Override
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers() {
-        EquipmentSlot slot = getType().getSlot();
-
-        int defense = ModArmorMaterials.MAID_MATERIAL.value().getDefense(getType());
-
-        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-
-        // 添加基础护甲属性
-        builder.add(
-                Attributes.KNOCKBACK_RESISTANCE,
-                new AttributeModifier(
-                        ResourceLocation.fromNamespaceAndPath(MODID, "maid_knockback_resistance"),
-                        (double) defense / 20,
-                        AttributeModifier.Operation.ADD_VALUE
-                ),
-                EquipmentSlotGroup.bySlot(slot)
-        );
-
-        builder.add(
-                Attributes.MAX_HEALTH,
-                new AttributeModifier(
-                        ResourceLocation.fromNamespaceAndPath(MODID, "maid_health"),
-                        57.0,
-                        AttributeModifier.Operation.ADD_VALUE
-                ),
-                EquipmentSlotGroup.bySlot(slot)
-        );
-
-        return builder.build();
+        // 移除了单独的属性修饰符，改为在MaidArmorEvents中全套装备时统一添加
+        return super.getDefaultAttributeModifiers();
     }
+
 
     @Override
     public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
