@@ -1,8 +1,8 @@
 package io.civetwww.m7ga.modgenerated;
 
 import io.civetwww.m7ga.M7GA;
-import io.civetwww.m7ga.blocks.ModBlocks;
-import io.civetwww.m7ga.items.ModItems;
+import io.civetwww.m7ga.common.blocks.ModBlocks;
+import io.civetwww.m7ga.common.items.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -34,10 +34,10 @@ public class Language {
             this.add(ModItems.ICHOR_CORE.get(),"通天核心");
             this.add(ModItems.MEGA_TEMPLATE.get(),"觉醒模板");
 
-            this.add(ModItems.RAINBOW_HELMET.get(), "魔女头饰");
-            this.add(ModItems.RAINBOW_CHESTPLATE.get(), "魔女围巾");
-            this.add(ModItems.RAINBOW_LEGGINGS.get(), "魔女短裙");
-            this.add(ModItems.RAINBOW_BOOTS.get(), "魔女白丝");
+            this.add(ModItems.MAID_HEADGEAR.get(), "女仆头饰");
+            this.add(ModItems.MAID_SUIT.get(), "女仆衣服");
+            this.add(ModItems.MAID_SKIRT.get(), "女仆短裙");
+            this.add(ModItems.MAID_BOOTS.get(), "女仆白丝");
 
             this.add(ModItems.ICHOR_HELMET.get(), "通天灵宝·明");
             this.add(ModItems.ICHOR_CHESTPLATE.get(), "通天灵宝·霄");

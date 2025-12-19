@@ -1,7 +1,7 @@
-package io.civetwww.m7ga.blocks;
+package io.civetwww.m7ga.common.blocks;
 
 import io.civetwww.m7ga.M7GA;
-import io.civetwww.m7ga.items.ModItems;
+import io.civetwww.m7ga.common.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;

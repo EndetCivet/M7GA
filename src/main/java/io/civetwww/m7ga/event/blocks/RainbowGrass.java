@@ -1,6 +1,6 @@
-package io.civetwww.m7ga.event.item;
+package io.civetwww.m7ga.event.blocks;
 
-import io.civetwww.m7ga.blocks.ModBlocks;
+import io.civetwww.m7ga.common.blocks.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.server.level.ServerLevel;

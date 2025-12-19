@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import static io.civetwww.m7ga.items.ModItems.*;
+import static io.civetwww.m7ga.common.items.ModItems.*;
 
 public class ModResources {
     public static class ModelProvider extends ItemModelProvider {
@@ -50,14 +50,14 @@ public class ModResources {
             this.singleTexture(ICHOR_BOOTS_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
                     "item/" + ICHOR_BOOTS_ID));
             //七彩护甲
-            this.singleTexture(RAINBOW_HELMET_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
-                    "item/" + RAINBOW_HELMET_ID));
-            this.singleTexture(RAINBOW_CHESTPLATE_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
-                    "item/" + RAINBOW_CHESTPLATE_ID));
-            this.singleTexture(RAINBOW_LEGGINGS_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
-                    "item/" + RAINBOW_LEGGINGS_ID));
-            this.singleTexture(RAINBOW_BOOTS_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
-                    "item/" + RAINBOW_BOOTS_ID));
+            this.singleTexture(MAID_HEADGEAR_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
+                    "item/" + MAID_HEADGEAR_ID));
+            this.singleTexture(MAID_SUIT_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
+                    "item/" + MAID_SUIT_ID));
+            this.singleTexture(MAID_SKIRT_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
+                    "item/" + MAID_SKIRT_ID));
+            this.singleTexture(MAID_BOOTS_ID, ResourceLocation.withDefaultNamespace("item/generated"), "layer0", ResourceLocation.fromNamespaceAndPath(M7GA.MODID,
+                    "item/" + MAID_BOOTS_ID));
         }
     }
 }

@@ -1,4 +1,4 @@
-package io.civetwww.m7ga.client.gui;
+package io.civetwww.m7ga.init;
 
 import io.civetwww.m7ga.M7GA;
 import net.minecraft.core.registries.Registries;
@@ -8,8 +8,8 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static io.civetwww.m7ga.blocks.ModBlocks.*;
-import static io.civetwww.m7ga.items.ModItems.*;
+import static io.civetwww.m7ga.common.blocks.ModBlocks.*;
+import static io.civetwww.m7ga.common.items.ModItems.*;
 
 
 public class ModTabs {
@@ -43,10 +43,10 @@ public class ModTabs {
             event.accept(ICHOR_CORE.get());
             event.accept(MEGA_TEMPLATE.get());
 
-            event.accept(RAINBOW_HELMET.get());
-            event.accept(RAINBOW_CHESTPLATE.get());
-            event.accept(RAINBOW_LEGGINGS.get());
-            event.accept(RAINBOW_BOOTS.get());
+            event.accept(MAID_HEADGEAR.get());
+            event.accept(MAID_SUIT.get());
+            event.accept(MAID_SKIRT.get());
+            event.accept(MAID_BOOTS.get());
 
             event.accept(ICHOR_HELMET.get());
             event.accept(ICHOR_CHESTPLATE.get());

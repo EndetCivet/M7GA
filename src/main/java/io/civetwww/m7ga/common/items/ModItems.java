@@ -1,17 +1,19 @@
-package io.civetwww.m7ga.items;
+package io.civetwww.m7ga.common.items;
 
 import io.civetwww.m7ga.M7GA;
-import io.civetwww.m7ga.items.tools.IchorAxe;
-import io.civetwww.m7ga.items.tools.RainbowPickaxe;
+import io.civetwww.m7ga.client.renderer.armor.MaidArmorRenderer;
+import io.civetwww.m7ga.common.items.armor.MaidArmorItem;
+import io.civetwww.m7ga.common.items.tools.IchorAxe;
+import io.civetwww.m7ga.common.items.tools.RainbowPickaxe;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-import static io.civetwww.m7ga.init.ModArmorMaterials.ICHOR_CLOTH_MATERIAL;
-import static io.civetwww.m7ga.init.ModArmorMaterials.RAINBOW_CLOTH_MATERIAL;
+import io.civetwww.m7ga.init.ModArmorMaterials;
 import static io.civetwww.m7ga.init.ModToolsTiers.MODTOOLS_TIER;
 
 public class ModItems {
@@ -73,53 +75,56 @@ public class ModItems {
     //灵布护甲
     public static final String ICHOR_HELMET_ID = "ichor_helmet";
     public static final Supplier<ArmorItem> ICHOR_HELMET = ITEMS.register(ICHOR_HELMET_ID, () -> new ArmorItem(
-            ICHOR_CLOTH_MATERIAL,
+            ModArmorMaterials.ICHOR_CLOTH_MATERIAL,
             ArmorItem.Type.HELMET,
             new Item.Properties()
     ));
     public static final String ICHOR_CHESTPLATE_ID = "ichor_chestplate";
     public static final Supplier<ArmorItem> ICHOR_CHESTPLATE = ITEMS.register(ICHOR_CHESTPLATE_ID, () -> new ArmorItem(
-            ICHOR_CLOTH_MATERIAL,
+            ModArmorMaterials.ICHOR_CLOTH_MATERIAL,
             ArmorItem.Type.CHESTPLATE,
             new Item.Properties()
     ));
     public static final String ICHOR_LEGGINGS_ID = "ichor_leggings";
     public static final Supplier<ArmorItem> ICHOR_LEGGINGS = ITEMS.register(ICHOR_LEGGINGS_ID, () -> new ArmorItem(
-            ICHOR_CLOTH_MATERIAL,
+            ModArmorMaterials.ICHOR_CLOTH_MATERIAL,
             ArmorItem.Type.LEGGINGS,
             new Item.Properties()
     ));
     public static final String ICHOR_BOOTS_ID = "ichor_boots";
     public static final Supplier<ArmorItem> ICHOR_BOOTS = ITEMS.register(ICHOR_BOOTS_ID, () -> new ArmorItem(
-            ICHOR_CLOTH_MATERIAL,
+            ModArmorMaterials.ICHOR_CLOTH_MATERIAL,
             ArmorItem.Type.BOOTS,
             new Item.Properties()
     ));
 
-    //七彩护甲
-    public static final String RAINBOW_HELMET_ID = "rainbow_helmet";
-    public static final Supplier<ArmorItem> RAINBOW_HELMET = ITEMS.register(RAINBOW_HELMET_ID, () -> new ArmorItem(
-            RAINBOW_CLOTH_MATERIAL,
+    //女仆
+    public static final String MAID_HEADGEAR_ID = "maid_headgear";
+    public static final Supplier<ArmorItem> MAID_HEADGEAR = ITEMS.register(MAID_HEADGEAR_ID, () -> new MaidArmorItem(
+            ModArmorMaterials.MAID_MATERIAL,
             ArmorItem.Type.HELMET,
-            new Item.Properties()
+            new Item.Properties().stacksTo(1)
     ));
-    public static final String RAINBOW_CHESTPLATE_ID = "rainbow_chestplate";
-    public static final Supplier<ArmorItem> RAINBOW_CHESTPLATE = ITEMS.register(RAINBOW_CHESTPLATE_ID, () -> new ArmorItem(
-            RAINBOW_CLOTH_MATERIAL,
+
+    public static final String MAID_SUIT_ID = "maid_suit";
+    public static final Supplier<ArmorItem> MAID_SUIT = ITEMS.register(MAID_SUIT_ID, () -> new MaidArmorItem(
+            ModArmorMaterials.MAID_MATERIAL,
             ArmorItem.Type.CHESTPLATE,
-            new Item.Properties()
+            new Item.Properties().stacksTo(1)
     ));
-    public static final String RAINBOW_LEGGINGS_ID = "rainbow_leggings";
-    public static final Supplier<ArmorItem> RAINBOW_LEGGINGS = ITEMS.register(RAINBOW_LEGGINGS_ID, () -> new ArmorItem(
-            RAINBOW_CLOTH_MATERIAL,
+
+    public static final String MAID_SKIRT_ID = "maid_skirt";
+    public static final Supplier<ArmorItem> MAID_SKIRT = ITEMS.register(MAID_SKIRT_ID, () -> new MaidArmorItem(
+            ModArmorMaterials.MAID_MATERIAL,
             ArmorItem.Type.LEGGINGS,
-            new Item.Properties()
+            new Item.Properties().stacksTo(1)
     ));
-    public static final String RAINBOW_BOOTS_ID = "rainbow_boots";
-    public static final Supplier<ArmorItem> RAINBOW_BOOTS = ITEMS.register(RAINBOW_BOOTS_ID, () -> new ArmorItem(
-            RAINBOW_CLOTH_MATERIAL,
+
+    public static final String MAID_BOOTS_ID = "maid_boots";
+    public static final Supplier<ArmorItem> MAID_BOOTS = ITEMS.register(MAID_BOOTS_ID, () -> new MaidArmorItem(
+            ModArmorMaterials.MAID_MATERIAL,
             ArmorItem.Type.BOOTS,
-            new Item.Properties()
+            new Item.Properties().stacksTo(1)
     ));
 
 

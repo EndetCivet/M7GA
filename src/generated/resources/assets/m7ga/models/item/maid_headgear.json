@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "m7ga:item/rainbow_boots"
+    "layer0": "m7ga:item/maid_headgear"
   }
 }
