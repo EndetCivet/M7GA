@@ -1,13 +1,11 @@
 package io.civetwww.m7ga.common.items;
 
 import io.civetwww.m7ga.M7GA;
-import io.civetwww.m7ga.client.renderer.armor.MaidArmorRenderer;
 import io.civetwww.m7ga.common.items.armor.MaidArmorItem;
 import io.civetwww.m7ga.common.items.tools.IchorAxe;
 import io.civetwww.m7ga.common.items.tools.RainbowPickaxe;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

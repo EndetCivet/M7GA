@@ -2,7 +2,6 @@ package io.civetwww.m7ga.client;
 
 import io.civetwww.m7ga.client.renderer.armor.MaidArmorRenderer;
 import io.civetwww.m7ga.common.items.ModItems;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
 import java.lang.reflect.Field;
 import java.util.Map;
