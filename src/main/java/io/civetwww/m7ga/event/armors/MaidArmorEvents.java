@@ -1,7 +1,10 @@
 package io.civetwww.m7ga.event.armors;
 
 import io.civetwww.m7ga.common.items.ModItems;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,9 +16,11 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
-import net.neoforged.neoforge.common.NeoForgeMod;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 import static io.civetwww.m7ga.M7GA.MODID;
 
@@ -25,8 +30,8 @@ public class MaidArmorEvents {
     private static final ResourceLocation MAID_ARMOR_SPEED = ResourceLocation.fromNamespaceAndPath(MODID, "maid_armor_speed");
     private static final ResourceLocation MAID_ARMOR_HEALTH = ResourceLocation.fromNamespaceAndPath(MODID, "maid_armor_health");
     private static final ResourceLocation MAID_ARMOR_KNOCKBACK = ResourceLocation.fromNamespaceAndPath(MODID, "maid_armor_knockback_resistance");
-    private static final ResourceLocation MAID_ARMOR_FLIGHT = ResourceLocation.fromNamespaceAndPath(MODID, "maid_armor_flight");
     private static final ResourceLocation MAID_ARMOR_ATTACK_DAMAGE = ResourceLocation.fromNamespaceAndPath(MODID, "maid_armor_attack_damage");
+
 
     @SubscribeEvent
     public static void onPlayerTick(EntityTickEvent.Post event) {
@@ -53,18 +58,19 @@ public class MaidArmorEvents {
 
             //幸运
             if (!player.hasEffect(MobEffects.LUCK) || Objects.requireNonNull(player.getEffect(MobEffects.LUCK)).getDuration() <= 70) {
-                player.addEffect(new MobEffectInstance(MobEffects.LUCK, 140, 0, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.LUCK, 140, 6, false, false));
             }
 
-            //抗火
+            //抗火 II
             if (!player.hasEffect(MobEffects.FIRE_RESISTANCE) || Objects.requireNonNull(player.getEffect(MobEffects.FIRE_RESISTANCE)).getDuration() <= 70) {
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 140, 0, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 140, 1, false, false));
             }
 
-            if (!Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).hasModifier(MAID_ARMOR_FLIGHT)) {
-                Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).addPermanentModifier(
-                        new AttributeModifier(MAID_ARMOR_FLIGHT, 1.0, AttributeModifier.Operation.ADD_VALUE)
-                );
+            // 饱食度回复
+            if (player.tickCount % 100 == 0) {
+                if (player.getFoodData().getFoodLevel() < 20) {
+                    player.getFoodData().eat(1, 0.1F);
+                }
             }
 
             // 检查是否空手
@@ -83,30 +89,19 @@ public class MaidArmorEvents {
                 }
             }
 
+
         } else {
             // 移除全套护甲的属性修饰符
             removeFullSetAttributes(player);
-
-            // 如果不穿全套女仆护甲，且不是创造模式，则移除飞行能力
-            if (!player.isCreative() && !player.isSpectator()) {
-                // 移除CREATIVE_FLIGHT属性修饰符
-                if (Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).hasModifier(MAID_ARMOR_FLIGHT)) {
-                    Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).removeModifier(MAID_ARMOR_FLIGHT);
-                }
-
-                // 取消飞行状态
-                if (player.getAbilities().flying) {
-                    player.getAbilities().flying = false;
-                    player.onUpdateAbilities();
-                }
-            }
 
             // 移除攻击力加成
             if (Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
                 Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).removeModifier(MAID_ARMOR_ATTACK_DAMAGE);
             }
+
         }
     }
+
 
     // 添加全套护甲的属性修饰符
     private static void addFullSetAttributes(Player player) {
@@ -147,11 +142,6 @@ public class MaidArmorEvents {
 
         if (Objects.requireNonNull(player.getAttribute(Attributes.KNOCKBACK_RESISTANCE)).hasModifier(MAID_ARMOR_KNOCKBACK)) {
             Objects.requireNonNull(player.getAttribute(Attributes.KNOCKBACK_RESISTANCE)).removeModifier(MAID_ARMOR_KNOCKBACK);
-        }
-
-        // 移除飞行能力修饰符
-        if (Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).hasModifier(MAID_ARMOR_FLIGHT)) {
-            Objects.requireNonNull(player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT)).removeModifier(MAID_ARMOR_FLIGHT);
         }
     }
 

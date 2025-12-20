@@ -18,6 +18,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import org.jetbrains.annotations.NotNull;
 
 public class ArmorModel extends HumanoidModel<LivingEntity> {
     protected final EquipmentSlot slot;
@@ -30,7 +31,7 @@ public class ArmorModel extends HumanoidModel<LivingEntity> {
     // [VanillaCopy] ArmorStandArmorModel.setupAnim because armor stands are dumb
     // This fixes the armor "breathing" and helmets always facing south on armor stands
     @Override
-    public void setupAnim(LivingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull LivingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!(entity instanceof ArmorStand entityIn)) {
             super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             return;
@@ -61,7 +62,7 @@ public class ArmorModel extends HumanoidModel<LivingEntity> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         setPartVisibility(slot);
         super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
