@@ -1,0 +1,11 @@
+{
+  "type": "m7ga:home_sweet_home",
+  "generator": {
+    "type": "m7ga:hsh_chunk_generator",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "m7ga:home_sweet_home_biome"
+    },
+    "settings": "m7ga:home_sweet_home"
+  }
+}

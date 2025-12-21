@@ -6,6 +6,8 @@ import io.civetwww.m7ga.common.blocks.ModBlocks;
 import io.civetwww.m7ga.init.ModArmorMaterials;
 import io.civetwww.m7ga.common.items.ModItems;
 import io.civetwww.m7ga.modgenerated.ModGenerated;
+import io.civetwww.m7ga.server.DimGen.HomeSweetHome;
+import io.civetwww.m7ga.server.commands.HSHCommands;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +16,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
@@ -28,7 +31,7 @@ public class M7GA {
         // 检查到玩家登录后，向玩家发送一条消息
         var player = event.getEntity();
         var LoggedMassages = Component.translatable("能和我玩一辈子七彩境界吗？");
-        player.sendSystemMessage(LoggedMassages.withStyle(ChatFormatting.AQUA));
+        player.sendSystemMessage(LoggedMassages.withStyle(ChatFormatting.LIGHT_PURPLE));
     }
     private void onServerStarting(ServerStartingEvent event)
     {
@@ -37,7 +40,10 @@ public class M7GA {
         System.out.println("Make RainbowWorld Great Again!");
     }
 
-
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        HSHCommands.register(event.getDispatcher());
+    }
 
 
     public M7GA(IEventBus modEventBus, ModContainer modContainer) {
@@ -52,6 +58,8 @@ public class M7GA {
         modEventBus.addListener(ModGenerated::gatherData);
 
         ClientInit.register(modEventBus);
+
+        HomeSweetHome.register(modEventBus);
     }
 
 }
