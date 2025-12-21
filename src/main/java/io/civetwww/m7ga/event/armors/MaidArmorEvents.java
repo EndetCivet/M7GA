@@ -1,10 +1,10 @@
 package io.civetwww.m7ga.event.armors;
 
+import io.civetwww.m7ga.M7GAConfig;
 import io.civetwww.m7ga.common.items.ModItems;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,10 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 import static io.civetwww.m7ga.M7GA.MODID;
 
@@ -37,68 +34,101 @@ public class MaidArmorEvents {
     public static void onPlayerTick(EntityTickEvent.Post event) {
         // 只处理玩家实体
         if (!(event.getEntity() instanceof Player player)) return;
+        
+        // 检查是否启用了护甲效果
+        if (!M7GAConfig.getInstance().isArmorEffectsEnabled()) {
+            removeAllArmorEffects(player);
+            return;
+        }
 
         // 检查是否穿着全套女仆护甲
         if (hasFullMaidArmor(player)) {
-            // 循环清除debuff
-            player.getActiveEffects().removeIf(effect -> !effect.getEffect().value().isBeneficial());
-
-            // 属性修饰符
-            addFullSetAttributes(player);
-
-            // 生命恢复2
-            if (!player.hasEffect(MobEffects.REGENERATION) || Objects.requireNonNull(player.getEffect(MobEffects.REGENERATION)).getDuration() <= 70) {
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 140, 1, false, false));
-            }
-
-            // 夜视
-            if (!player.hasEffect(MobEffects.NIGHT_VISION) || Objects.requireNonNull(player.getEffect(MobEffects.NIGHT_VISION)).getDuration() <= 200) {
-                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 400, 0, false, false));
-            }
-
-            //幸运
-            if (!player.hasEffect(MobEffects.LUCK) || Objects.requireNonNull(player.getEffect(MobEffects.LUCK)).getDuration() <= 70) {
-                player.addEffect(new MobEffectInstance(MobEffects.LUCK, 140, 6, false, false));
-            }
-
-            //抗火 II
-            if (!player.hasEffect(MobEffects.FIRE_RESISTANCE) || Objects.requireNonNull(player.getEffect(MobEffects.FIRE_RESISTANCE)).getDuration() <= 70) {
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 140, 1, false, false));
-            }
-
-            // 饱食度回复
-            if (player.tickCount % 100 == 0) {
-                if (player.getFoodData().getFoodLevel() < 20) {
-                    player.getFoodData().eat(1, 0.1F);
-                }
-            }
-
-            // 检查是否空手
-            boolean isEmptyHanded = player.getMainHandItem().isEmpty() && player.getOffhandItem().isEmpty();
-            if (isEmptyHanded) {
-                // 空手时添加攻击力加成
-                if (!Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
-                    Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).addPermanentModifier(
-                            new AttributeModifier(MAID_ARMOR_ATTACK_DAMAGE, 20.0, AttributeModifier.Operation.ADD_VALUE)
-                    );
-                }
-            } else {
-                // 非空手时移除攻击力加成
-                if (Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
-                    Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).removeModifier(MAID_ARMOR_ATTACK_DAMAGE);
-                }
-            }
-
-
+            applyFullArmorEffects(player);
         } else {
-            // 移除全套护甲的属性修饰符
-            removeFullSetAttributes(player);
+            removeAllArmorEffects(player);
+        }
+    }
 
-            // 移除攻击力加成
-            if (Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
-                Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).removeModifier(MAID_ARMOR_ATTACK_DAMAGE);
-            }
+    // 应用全套护甲效果
+    private static void applyFullArmorEffects(Player player) {
+        // 清除debuff
+        player.getActiveEffects().removeIf(effect -> !effect.getEffect().value().isBeneficial());
+        
+        // 应用属性加成
+        addFullSetAttributes(player);
+        
+        // 应用药水效果
+        applyPotionEffects(player);
+        
+        // 应用饱食度回复
+        applyFoodRegeneration(player);
+        
+        // 处理攻击力加成
+        handleAttackDamageBonus(player);
+    }
 
+    // 移除所有护甲效果
+    private static void removeAllArmorEffects(Player player) {
+        removeFullSetAttributes(player);
+        removeAttackDamageBonus(player);
+    }
+
+    // 应用药水效果
+    private static void applyPotionEffects(Player player) {
+        // 生命恢复2
+        applyPotionEffect(player, MobEffects.REGENERATION, 140, 1, 70);
+        
+        // 夜视
+        applyPotionEffect(player, MobEffects.NIGHT_VISION, 400, 0, 200);
+        
+        // 幸运
+        applyPotionEffect(player, MobEffects.LUCK, 140, 6, 70);
+        
+        // 抗火 II
+        applyPotionEffect(player, MobEffects.FIRE_RESISTANCE, 140, 1, 70);
+    }
+
+    // 应用单个药水效果
+    private static void applyPotionEffect(Player player, 
+                                       Holder<MobEffect> effect, 
+                                       int duration, 
+                                       int amplifier, 
+                                       int minDuration) {
+        if (!player.hasEffect(effect) || Objects.requireNonNull(player.getEffect(effect)).getDuration() <= minDuration) {
+            player.addEffect(new MobEffectInstance(effect, duration, amplifier, false, false));
+        }
+    }
+
+    // 应用饱食度回复
+    private static void applyFoodRegeneration(Player player) {
+        if (player.tickCount % 100 == 0 && player.getFoodData().getFoodLevel() < 20) {
+            player.getFoodData().eat(1, 0.1F);
+        }
+    }
+
+    // 处理攻击力加成
+    private static void handleAttackDamageBonus(Player player) {
+        boolean isEmptyHanded = player.getMainHandItem().isEmpty() && player.getOffhandItem().isEmpty();
+        if (isEmptyHanded) {
+            addAttackDamageBonus(player);
+        } else {
+            removeAttackDamageBonus(player);
+        }
+    }
+
+    // 添加攻击力加成
+    private static void addAttackDamageBonus(Player player) {
+        if (!Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
+            Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).addPermanentModifier(
+                    new AttributeModifier(MAID_ARMOR_ATTACK_DAMAGE, 20.0, AttributeModifier.Operation.ADD_VALUE)
+            );
+        }
+    }
+
+    // 移除攻击力加成
+    private static void removeAttackDamageBonus(Player player) {
+        if (Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).hasModifier(MAID_ARMOR_ATTACK_DAMAGE)) {
+            Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).removeModifier(MAID_ARMOR_ATTACK_DAMAGE);
         }
     }
 

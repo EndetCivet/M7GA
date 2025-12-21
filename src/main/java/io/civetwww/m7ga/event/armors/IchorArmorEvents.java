@@ -1,7 +1,10 @@
 package io.civetwww.m7ga.event.armors;
 
+import io.civetwww.m7ga.M7GAConfig;
 import io.civetwww.m7ga.common.items.ModItems;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -27,47 +30,72 @@ public class IchorArmorEvents {
     private static final ResourceLocation ICHOR_ARMOR_ATTACK_DAMAGE = ResourceLocation.fromNamespaceAndPath(MODID, "ichor_armor_attack_damage");
     private static final ResourceLocation ICHOR_ARMOR_KNOCKBACK = ResourceLocation.fromNamespaceAndPath(MODID, "ichor_armor_knockback_resistance");
 
-
-    private static final Random RANDOM = new Random();
-
     @SubscribeEvent
     public static void onPlayerTick(EntityTickEvent.Post event) {
         // 只处理玩家实体
         if (!(event.getEntity() instanceof Player player)) return;
-
+        
+        // 检查是否启用了护甲效果
+        if (!M7GAConfig.getInstance().isArmorEffectsEnabled()) {
+            removeAllArmorEffects(player);
+            return;
+        }
+        
         // 检查是否穿着全套Ichor护甲
         if (hasFullIchorArmor(player)) {
-            // 属性修饰符
-            addFullSetAttributes(player);
-
-            // 夜视
-            if (!player.hasEffect(MobEffects.NIGHT_VISION) || Objects.requireNonNull(player.getEffect(MobEffects.NIGHT_VISION)).getDuration() <= 200) {
-                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 400, 0, false, false));
-            }
-
-            // 抗火
-            if (!player.hasEffect(MobEffects.FIRE_RESISTANCE) || Objects.requireNonNull(player.getEffect(MobEffects.FIRE_RESISTANCE)).getDuration() <= 140) {
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 0, false, false));
-            }
-
-
-            // 急迫2
-            if (!player.hasEffect(MobEffects.DIG_SPEED) || Objects.requireNonNull(player.getEffect(MobEffects.DIG_SPEED)).getDuration() <= 140) {
-                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 140, 1, false, false));
-            }
-
-            // 饱食度回复
-            if (player.tickCount % 100 == 0) {
-                if (player.getFoodData().getFoodLevel() < 20) {
-                    player.getFoodData().eat(1, 0.1F);
-                }
-            }
-
-
-
+            applyFullArmorEffects(player);
         } else {
-            // 移除全套护甲的属性修饰符
-            removeFullSetAttributes(player);
+            removeAllArmorEffects(player);
+        }
+    }
+    
+    /**
+     * 应用全套Ichor护甲的所有效果
+     */
+    private static void applyFullArmorEffects(Player player) {
+        applyAttributeModifiers(player);
+        applyPotionEffects(player);
+        applyHungerRegeneration(player);
+    }
+    
+    /**
+     * 移除所有Ichor护甲效果
+     */
+    private static void removeAllArmorEffects(Player player) {
+        removeFullSetAttributes(player);
+    }
+    
+    /**
+     * 应用属性修饰符
+     */
+    private static void applyAttributeModifiers(Player player) {
+        addFullSetAttributes(player);
+    }
+    
+    /**
+     * 应用药水效果
+     */
+    private static void applyPotionEffects(Player player) {
+        applyPotionEffect(player, MobEffects.NIGHT_VISION, 400, 0, 200);
+        applyPotionEffect(player, MobEffects.FIRE_RESISTANCE, 280, 0, 140);
+        applyPotionEffect(player, MobEffects.DIG_SPEED, 140, 1, 140);
+    }
+    
+    /**
+     * 应用单个药水效果
+     */
+    private static void applyPotionEffect(Player player, Holder<MobEffect> effect, int duration, int amplifier, int minDuration) {
+        if (!player.hasEffect(effect) || Objects.requireNonNull(player.getEffect(effect)).getDuration() <= minDuration) {
+            player.addEffect(new MobEffectInstance(effect, duration, amplifier, false, false));
+        }
+    }
+    
+    /**
+     * 应用饱食度回复效果
+     */
+    private static void applyHungerRegeneration(Player player) {
+        if (player.tickCount % 100 == 0 && player.getFoodData().getFoodLevel() < 20) {
+            player.getFoodData().eat(1, 0.1F);
         }
     }
 

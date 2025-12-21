@@ -7,7 +7,8 @@ import io.civetwww.m7ga.init.ModArmorMaterials;
 import io.civetwww.m7ga.common.items.ModItems;
 import io.civetwww.m7ga.modgenerated.ModGenerated;
 import io.civetwww.m7ga.server.DimGen.HomeSweetHome;
-import io.civetwww.m7ga.server.commands.HSHCommands;
+import io.civetwww.m7ga.server.PremiumManager;
+import io.civetwww.m7ga.server.commands.M7GACommands;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
@@ -33,16 +34,24 @@ public class M7GA {
         var LoggedMassages = Component.translatable("能和我玩一辈子七彩境界吗？");
         player.sendSystemMessage(LoggedMassages.withStyle(ChatFormatting.LIGHT_PURPLE));
     }
-    private void onServerStarting(ServerStartingEvent event)
+
+    @SubscribeEvent
+    public static void onServerStarting(ServerStartingEvent event)
     {
         // 当服务器启动时执行
-        System.out.println("七彩境界！启动！");
-        System.out.println("Make RainbowWorld Great Again!");
+        System.out.println("[M7GA] 七彩境界！启动！");
+        System.out.println("[M7GA] Make RainbowWorld Great Again!");
+
+        // 初始化配置
+        M7GAConfig.getInstance().initialize(event.getServer());
+        
+        // 初始化付费玩家管理器
+        PremiumManager.setServerInstance(event.getServer());
     }
 
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
-        HSHCommands.register(event.getDispatcher());
+        M7GACommands.register(event.getDispatcher());
     }
 
 
@@ -63,4 +72,3 @@ public class M7GA {
     }
 
 }
-

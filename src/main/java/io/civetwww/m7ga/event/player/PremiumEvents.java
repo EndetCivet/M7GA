@@ -27,8 +27,8 @@ public class PremiumEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             String playerName = player.getName().getString();
 
-            // 检查玩家是否有权限
-            if (PremiumManager.isPremiumPlayer(playerName)) {
+            // 检查玩家是否有权限且飞行功能已启用
+            if (PremiumManager.isPremiumPlayerWithFlight(playerName)) {
                 grantFlightPermission(player);
                 player.sendSystemMessage(Component.literal("这里是塔台,允许起飞!").withStyle(ChatFormatting.GREEN));
             }
@@ -43,8 +43,8 @@ public class PremiumEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             String playerName = player.getName().getString();
 
-            // 检查玩家是否有权限
-            if (PremiumManager.isPremiumPlayer(playerName)) {
+            // 检查玩家是否有权限且飞行功能已启用
+            if (PremiumManager.isPremiumPlayerWithFlight(playerName)) {
                 revokeFlightPermission(player);
             }
         }
@@ -58,8 +58,8 @@ public class PremiumEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             String playerName = player.getName().getString();
 
-            // 检查玩家是否有权限
-            if (PremiumManager.isPremiumPlayer(playerName)) {
+            // 检查玩家是否有权限且飞行功能已启用
+            if (PremiumManager.isPremiumPlayerWithFlight(playerName)) {
                 // 延迟执行，确保玩家完全重生
                 player.getServer().execute(() -> {
                     grantFlightPermission(player);
@@ -76,8 +76,8 @@ public class PremiumEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             String playerName = player.getName().getString();
 
-            // 检查玩家是否有权限
-            if (PremiumManager.isPremiumPlayer(playerName)) {
+            // 检查玩家是否有权限且飞行功能已启用
+            if (PremiumManager.isPremiumPlayerWithFlight(playerName)) {
                 // 延迟执行，确保维度切换完成
                 player.getServer().execute(() -> {
                     grantFlightPermission(player);
@@ -135,7 +135,7 @@ public class PremiumEvents {
     public static void updatePlayerFlightPermission(ServerPlayer player) {
         String playerName = player.getName().getString();
 
-        if (PremiumManager.isPremiumPlayer(playerName)) {
+        if (PremiumManager.isPremiumPlayerWithFlight(playerName)) {
             grantFlightPermission(player);
             player.sendSystemMessage(Component.literal("飞行权限已更新!").withStyle(ChatFormatting.GREEN));
         } else {
