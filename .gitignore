@@ -26,6 +26,6 @@ run-data
 repo
 
 #custom
-.github/workflows
+.github
 .gitattributes
 .gitignore
