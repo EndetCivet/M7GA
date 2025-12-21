@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -37,27 +38,27 @@ public class HSHChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    protected MapCodec<? extends ChunkGenerator> codec() {
+    protected @NotNull MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
     }
 
     @Override
-    public void applyCarvers(WorldGenRegion p_223043_, long p_223044_, RandomState p_223045_, BiomeManager p_223046_, StructureManager p_223047_, ChunkAccess p_223048_, GenerationStep.Carving p_223049_) {
+    public void applyCarvers(@NotNull WorldGenRegion p_223043_, long p_223044_, @NotNull RandomState p_223045_, @NotNull BiomeManager p_223046_, @NotNull StructureManager p_223047_, @NotNull ChunkAccess p_223048_, @NotNull GenerationStep.Carving p_223049_) {
         // 不应用任何雕刻器
     }
 
     @Override
-    public void buildSurface(WorldGenRegion p_223054_, StructureManager p_223055_, RandomState p_223056_, ChunkAccess p_223057_) {
+    public void buildSurface(@NotNull WorldGenRegion p_223054_, @NotNull StructureManager p_223055_, @NotNull RandomState p_223056_, @NotNull ChunkAccess p_223057_) {
         // 不构建地表
     }
 
     @Override
-    public void spawnOriginalMobs(WorldGenRegion p_62167_) {
+    public void spawnOriginalMobs(@NotNull WorldGenRegion p_62167_) {
         // 不生成原始生物
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Blender p_223190_, RandomState p_223191_, StructureManager p_223192_, ChunkAccess chunk) {
+    public @NotNull CompletableFuture<ChunkAccess> fillFromNoise(@NotNull Blender p_223190_, @NotNull RandomState p_223191_, @NotNull StructureManager p_223192_, @NotNull ChunkAccess chunk) {
         // 填充噪声数据
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
@@ -84,12 +85,12 @@ public class HSHChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public int getBaseHeight(int p_223089_, int p_223090_, Heightmap.Types p_223091_, LevelHeightAccessor p_223092_, RandomState p_223093_) {
+    public int getBaseHeight(int p_223089_, int p_223090_, @NotNull Heightmap.Types p_223091_, @NotNull LevelHeightAccessor p_223092_, @NotNull RandomState p_223093_) {
         return 0;
     }
 
     @Override
-    public NoiseColumn getBaseColumn(int p_223078_, int p_223079_, LevelHeightAccessor p_223080_, RandomState p_223081_) {
+    public @NotNull NoiseColumn getBaseColumn(int p_223078_, int p_223079_, @NotNull LevelHeightAccessor p_223080_, @NotNull RandomState p_223081_) {
         BlockState[] states = new BlockState[p_223080_.getHeight()];
         for (int i = 0; i < states.length; i++) {
             int y = i + p_223080_.getMinBuildHeight();
@@ -114,7 +115,7 @@ public class HSHChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void addDebugScreenInfo(List<String> p_223175_, RandomState p_223176_, BlockPos p_223177_) {
+    public void addDebugScreenInfo(@NotNull List<String> p_223175_, @NotNull RandomState p_223176_, @NotNull BlockPos p_223177_) {
         // 不添加调试信息
     }
 

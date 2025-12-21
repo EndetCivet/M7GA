@@ -85,7 +85,9 @@ public class MaidArmorItem extends ArmorItem {
         }
 
 
-        super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
+        if (context != null) {
+            super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
+        }
     }
 
     @Override

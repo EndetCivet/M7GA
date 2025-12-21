@@ -18,7 +18,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.Objects;
-import java.util.Random;
 
 import static io.civetwww.m7ga.M7GA.MODID;
 

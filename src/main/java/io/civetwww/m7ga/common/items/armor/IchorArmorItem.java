@@ -5,9 +5,6 @@ import io.civetwww.m7ga.common.items.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
@@ -17,8 +14,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Supplier;
-
-import static io.civetwww.m7ga.M7GA.MODID;
 
 public class IchorArmorItem extends ArmorItem {
     public static final Supplier<ItemStack[]> ARMOR_SET = Suppliers.memoize(() -> new ItemStack[] {
@@ -52,7 +47,9 @@ public class IchorArmorItem extends ArmorItem {
         tooltipComponents.add(Component.literal("§6• 饱食").withStyle(ChatFormatting.GOLD));
         tooltipComponents.add(Component.literal("§6※ 飞行").withStyle(ChatFormatting.GOLD));
 
-        super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
+        if (context != null) {
+            super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
+        }
     }
 
 }

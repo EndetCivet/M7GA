@@ -31,7 +31,7 @@ public class M7GA {
     public static void onLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         // 检查到玩家登录后，向玩家发送一条消息
         var player = event.getEntity();
-        var LoggedMassages = Component.translatable("能和我玩一辈子七彩境界吗？");
+        var LoggedMassages = Component.literal("能和我玩一辈子七彩境界吗？");
         player.sendSystemMessage(LoggedMassages.withStyle(ChatFormatting.LIGHT_PURPLE));
     }
 
