@@ -1,5 +1,14 @@
 
-information
+Make 7彩境界 Great Again！
 =======
 
-为服务器写的小玩意。仅娱乐，无分发。侵权删库。
+让7彩境界再次伟大！
+
+
+项目参考：
+Botania    https://github.com/VazkiiMods/Botania
+ExtraBotania
+https://github.com/ExtraMeteorP/Extra-Botany
+https://github.com/Lounode/Extrabotany
+ThaumicTinkerer
+https://github.com/Thaumic-Tinkerer/ThaumicTinkerer
